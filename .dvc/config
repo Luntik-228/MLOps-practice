@@ -1,4 +1,8 @@
 [core]
-    remote = myremote
-['remote "myremote"']
-    url = ../../dvc_storage
+    remote = cloudru
+['remote "cloudru"']
+    url = s3://borzenkov/dvc_data
+    endpointurl = https://s3.cloud.ru
+    region = ru-central-1
+    access_key_id = 35a56db3-9045-41a3-86d8-08f60e1b58d5:2c6fe7ce32e5d3bbfd11896d1f045488
+    secret_access_key = 08cdcc414b9d50ec5e8fb72837bd96e6

@@ -8,3 +8,6 @@ __pycache__/
 /models/*
 !/data/.keep
 !/models/.keep
+# MLflow local files
+mlruns/
+mlflow.db
