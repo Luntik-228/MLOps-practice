@@ -17,17 +17,30 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: "pip"
 
       - name: Установка зависимостей
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Проверка DVC remote
+        run: |
+          dvc remote list
+          dvc status
 
       - name: Загрузка данных через DVC из Cloud.ru
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: dvc pull
+        run: dvc pull -v
+
+      - name: Проверка файлов
+        run: |
+          ls -la
+          ls -la data
+          ls -la models
 
       - name: Запуск тестов
         run: pytest tests/
